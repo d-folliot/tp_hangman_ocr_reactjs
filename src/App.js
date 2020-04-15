@@ -28,7 +28,7 @@ function Letter(props){
 
 function Word (props){
   return <div className="word">
-    {props.word.split("").map((letter) => <Letter letter={letter} key={letter.id}/> )}
+    {props.word.split("").map((letter, index) => <Letter letter={letter} key={index}/> )}
   </div>
 }
 
@@ -38,11 +38,18 @@ class App extends React.Component {
     super(props);
     let keylist = Array.from(Array(26).keys()).map(( y) => { return {keyname : String.fromCharCode(y + 65), used : false}});
     console.log(keylist);
-    this.state = {keylist : keylist, currentword:"___________" ,finalword: "MACHINTRUC"};
+    this.state = {keylist : keylist, currentword:"__________" ,finalword: "MACHINTRUC"};
   }
 
-  keyhit(key){
-    console.log("you hit the key " + key);
+  keyhit(key){    
+    let keylist=this.state.keylist.map((item) => { return{ keyname: item.keyname, used : (item.keyname===key)? true : item.used }});
+    let currentword = this.state.currentword.split("");
+    for (let i=0; i<currentword.length; i++){
+      if (this.state.finalword[i]=== key)
+        currentword[i] = key;
+    }
+
+    this.setState({keylist:keylist, currentword: currentword.join("")});
 
   }
   render() {
