@@ -1,26 +1,58 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function LetterKey(props){
+  return <div type="submit" className={"letterkey " + (props.used?"used" : "unused")} onClick={props.onClick} >{props.keyname}</div>;
+}
+
+function Keyboard(props){    
+  return <div className="keyboard" >
+  {
+    props.keylist.map( 
+    (key) =><LetterKey keyname={key.keyname} used={key.used} key={key.keyname} onClick={() => props.onInteraction(key.keyname)}/> )
+  }
+  </div> ;
+}
+
+function Hangman(props){
+  return <div className="hangman">
+
+  </div>;
+}
+
+function Letter(props){
+  return <div className="letter">
+    {props.letter}
+  </div>;
+}
+
+function Word (props){
+  return <div className="word">
+    {props.word.split("").map((letter) => <Letter letter={letter} key={letter.id}/> )}
+  </div>
+}
+
+
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    let keylist = Array.from(Array(26).keys()).map(( y) => { return {keyname : String.fromCharCode(y + 65), used : false}});
+    console.log(keylist);
+    this.state = {keylist : keylist, currentword:"___________" ,finalword: "MACHINTRUC"};
+  }
+
+  keyhit(key){
+    console.log("you hit the key " + key);
+
+  }
+  render() {
+    return <div className="wrapper">
+      <Hangman/>
+      <Word word={this.state.currentword}/>
+      <Keyboard keylist={this.state.keylist} onInteraction={(key)=>this.keyhit(key)}/> 
+      <footer></footer>
+      </div>
+  }
 }
 
 export default App;

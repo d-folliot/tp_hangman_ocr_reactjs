@@ -1,38 +1,64 @@
-.App {
+:root{
+  --mainfont : #111;
+  --unused : #EEE;
+  --used : #888;
+}
+html{
+  height : 100%;
+}
+body{
+  height : 100%;
+}
+
+#root{
+  height:100%;
+}
+.wrapper{
+  display : grid ;
+  grid-template-areas: "hang" "word ""keyboard" "foot";
+  grid-template-rows: 1fr 100px 200px 50px; 
+  height:100%
+}
+.keyboard{
+  grid-area:keyboard;
+  display:grid;
+  grid-template-columns: repeat(13,1fr) ;
+  grid-template-rows: 50px 50px;
+  grid-gap: 5px;
+  margin : 3em;
+}
+.letterkey{
+  font-weight: bold;
+  border: 2px solid var(--mainfont);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 2em;
+  font-family: fantasy; 
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.unused{
+  background-color: var(--unused);
+  color : var(--mainfont);
+}
+.used{
+  background-color: var(--used);
+  color:var(--unused);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.hangman{
+  grid-area: hang;
+}
+.word{
+  grid-area: word;
+  display:flex;
+  flex-direction: row;
+}
+.letter{
+  font-size: 3em;
+  margin: 0.2em;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+footer {
+  grid-area: foot;
+  background-color: cadetblue;
 }
