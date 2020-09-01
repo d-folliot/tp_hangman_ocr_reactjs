@@ -52,7 +52,6 @@ body{
   grid-area: word;
   display:flex;
   flex-direction: row;
-  margin: auto;
 }
 .letter{
   font-size: 3em;
@@ -62,26 +61,4 @@ body{
 footer {
   grid-area: foot;
   background-color: cadetblue;
-}
-
-.newgame,.newgametxt{
-  font-size: 3em;
-  font-weight: bold;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-style: italic;
-
-}
-.newgame{
-  border-radius: 30px;
-  cursor:hand;
-  width: 100%;
-  padding:10px;
-}
-.newgametxt{
-  text-align: center;
-  margin-bottom: 15px;
-}
-.newgamediv{
-  width: 100%;
-  
 }
