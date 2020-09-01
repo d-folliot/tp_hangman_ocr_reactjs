@@ -13,6 +13,7 @@ function LetterKey(props){
 function Keyboard(props){    
   return <div className="keyboard" >
   {
+    // juste un comment pour git test
     props.keylist.map( 
     (key) =><LetterKey keyname={key.keyname} used={key.used} key={key.keyname} onClick={() => props.onClick(key.keyname)}/> )
   }
